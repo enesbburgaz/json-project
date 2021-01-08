@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+    <h1>Create Json</h1>
+</div>
+<form action="/create" method="POST">
+    <div class="form-group text-center">
+        <input type="text" class="col-4" id="fileName" name="fileName" placeholder="File Name: example.json">
+    </div>
+     <div class="form-group text-center">
+        <textarea id="jsonData" name="jsonData" id="jsonData" rows="20" cols="50" placeholder="Json Data" style="resize: none"></textarea>
+     </div>
+    <div class="text-center">
+        <a onclick="prettyPrint()" class="btn btn-warning">Pretty</a>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </div>
+</form>
+
+    <script>
+    function prettyPrint() {
+    var ugly = document.getElementById('jsonData').value;
+    var obj = JSON.parse(ugly);
+    var pretty = JSON.stringify(obj, undefined, 4);
+    document.getElementById('jsonData').value = pretty;
+}
+    </script>
+
+{% endblock %}
